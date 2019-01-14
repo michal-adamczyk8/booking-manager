@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: bookingManager
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: User
+Implementation-Vendor-Id: com.application.bookingManager
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/bookingManager
+Created-By: Maven Integration for Eclipse
+

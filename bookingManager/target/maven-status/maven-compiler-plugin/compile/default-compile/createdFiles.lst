@@ -1,0 +1,5 @@
+com\application\bookingManager\dao\UserDAOHibernateImpl.class
+com\application\bookingManager\BookingManagerApplication.class
+com\application\bookingManager\rest\UserRestController.class
+com\application\bookingManager\dao\UserDao.class
+com\application\bookingManager\entity\User.class
