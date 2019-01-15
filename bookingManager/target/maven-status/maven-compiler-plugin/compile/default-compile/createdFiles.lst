@@ -1,5 +1,15 @@
 com\application\bookingManager\dao\UserDAOHibernateImpl.class
-com\application\bookingManager\BookingManagerApplication.class
+com\application\bookingManager\service\UserServiceImpl.class
+com\application\bookingManager\entity\Room.class
+com\application\bookingManager\rest\RoomRestController.class
+com\application\bookingManager\service\RoomService.class
+com\application\bookingManager\security\SecurityConfig.class
 com\application\bookingManager\rest\UserRestController.class
+com\application\bookingManager\dao\RoomDao.class
 com\application\bookingManager\dao\UserDao.class
+com\application\bookingManager\service\UserService.class
+com\application\bookingManager\BookingManagerApplication.class
+com\application\bookingManager\service\RoomServiceImpl.class
 com\application\bookingManager\entity\User.class
+com\application\bookingManager\dao\RoomDAOHibernateImpl.class
+com\application\bookingManager\security\SecurityWebApplicationInitializer.class

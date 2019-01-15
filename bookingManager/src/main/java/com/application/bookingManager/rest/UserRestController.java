@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.application.bookingManager.dao.UserDao;
+
 import com.application.bookingManager.entity.User;
 import com.application.bookingManager.service.UserService;
 
@@ -30,7 +29,7 @@ public class UserRestController {
 	
 	
 	@GetMapping("/users")
-	public List<User> findAll() {
+	public List<User> findAllUsers() {
 		return userService.findAll();
 	}
 	
@@ -47,7 +46,6 @@ public class UserRestController {
 	
 	@PostMapping("/users")
 	public User addUser(@RequestBody User theUser) {
-	
 		userService.save(theUser);
 		
 		return theUser;

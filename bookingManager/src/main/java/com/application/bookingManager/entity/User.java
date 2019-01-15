@@ -2,21 +2,14 @@ package com.application.bookingManager.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
 @Table(name="USERS")
 public class User {
-	
-
-	@Column(name="id")
-	private int id;
 	
 	@Column(name="name")
 	private String name;
@@ -25,7 +18,7 @@ public class User {
 	private String surname;
 
 	@Id
-	@Column(name="login")
+	@Column(name="login", unique=true)
 	private String login;
 	
 	@Column(name="password")
@@ -33,7 +26,7 @@ public class User {
 
 	public User() {}
 
-	public User(int id, String name, String surname, String login, String password) {
+	public User(String name, String surname, String login, String password) {
 		this.name = name;
 		this.surname = surname;
 		this.login = login;
@@ -70,14 +63,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	@Override
