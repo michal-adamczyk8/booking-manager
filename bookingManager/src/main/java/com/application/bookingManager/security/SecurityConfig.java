@@ -1,10 +1,8 @@
 package com.application.bookingManager.security;
 
 
-import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,9 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import com.application.bookingManager.entity.User;
 
 
 @Configuration
@@ -42,12 +38,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/api/rooms/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/rooms").hasRole("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/rooms/**").hasRole("ADMIN")
-			.antMatchers(HttpMethod.DELETE, "/api/rooms/**").hasRole("ADMIN")			
+			.antMatchers(HttpMethod.DELETE, "/api/rooms/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.GET, "/api/booking").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.GET, "/api/booking/**").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.POST, "/api/booking").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.POST, "/api/booking/**").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.PUT, "/api/booking").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.PUT, "/api/booking/**").hasAnyRole("ADMIN", "EMPLOYEE")
+			.antMatchers(HttpMethod.DELETE, "/api/booking").hasAnyRole("ADMIN", "EMPLOYEE")
 			.and()
 			.httpBasic()
 			.and()
 			.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	
+		
+		http.headers().frameOptions().disable();	
 	}
 	
 	@Override
@@ -60,5 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser(users.username("jsmith").password("qwerty").roles("EMPLOYEE"))
 			.withUser(users.username("jdoe").password("mySecret").roles("EMPLOYEES"));
 		
+
 		}
 }

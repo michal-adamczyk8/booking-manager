@@ -1,8 +1,14 @@
 package com.application.bookingManager.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,7 +16,7 @@ import javax.persistence.Table;
 public class Room {
 
 	@Id
-	@Column(name="room_name", unique=true, columnDefinition="VARCHAR(50)")
+	@Column(name="room_name", unique=true)
 	private String roomName;
 	
 	@Column(name="location_description")
@@ -24,6 +30,11 @@ public class Room {
 	
 	@Column(name="phone_number")
 	private String phoneNumber;
+	
+	@OneToMany(cascade=CascadeType.ALL,
+			fetch=FetchType.LAZY,
+			mappedBy="bookedRoom")
+	List<Booking> bookings = new ArrayList<>();
 	
 	public Room() {}
 

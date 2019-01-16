@@ -11,15 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.application.bookingManager.entity.User;
+import com.application.bookingManager.security.BcryptGenerator;
 
 @Repository
 public class UserDAOHibernateImpl implements UserDao {
 
 	private EntityManager entityManager;
 	
+	private BcryptGenerator bcryptGenerator;
+	
 	@Autowired
-	public UserDAOHibernateImpl(EntityManager entityManager) {
+	public UserDAOHibernateImpl(EntityManager entityManager, BcryptGenerator bcryptGenerator) {
 		this.entityManager = entityManager;
+		this.bcryptGenerator = bcryptGenerator;
 	}
 	
 	@Override
@@ -46,6 +50,8 @@ public class UserDAOHibernateImpl implements UserDao {
 	@Override
 	public void save(User theUser) {
 		Session currentSession = entityManager.unwrap(Session.class);
+		
+		theUser.setPassword(bcryptGenerator.encyptPassword(theUser.getPassword()));
 		
 		currentSession.saveOrUpdate(theUser);
 	}

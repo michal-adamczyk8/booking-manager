@@ -2,8 +2,13 @@ package com.application.bookingManager.rest;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.application.bookinManager.exception.EntityErrorResponse;
 import com.application.bookingManager.entity.User;
 import com.application.bookingManager.service.UserService;
 
@@ -41,6 +46,7 @@ public class UserRestController {
 		if (theUser == null) {
 			throw new RuntimeException("User login not found - " + userLogin);
 		}
+		
 		return theUser;
 	}
 	
@@ -72,5 +78,4 @@ public class UserRestController {
 		
 		return "User with login: " + userLogin + " has been deleted sucessfully"; 
 	}
-
 }
